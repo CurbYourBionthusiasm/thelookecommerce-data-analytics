@@ -8,7 +8,7 @@
 
 SELECT 
   order_id, 
-  SUM(sale_price) AS revenue_per_order, 
+  ROUND(SUM(sale_price),2) AS revenue_per_order, 
 FROM `bigquery-public-data.thelook_ecommerce.order_items`
 WHERE status = "Complete"
 GROUP BY order_id;

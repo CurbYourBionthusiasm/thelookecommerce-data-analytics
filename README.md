@@ -1,108 +1,152 @@
 # theLook eCommerce Data Analytics
 
 ## Overview
-This project analyzes the **theLook eCommerce** dataset to identify revenue patterns, customer behavior, product performance, and business opportunities.
 
-The goal was not only to describe historical performance, but also to translate the analysis into actionable recommendations that could support growth, retention, and better customer targeting.
+This project presents an end-to-end analysis of an e-commerce dataset using SQL (BigQuery) and Python.
+
+The goal is to understand revenue patterns, customer purchasing behavior, and identify practical opportunities to improve business performance.
+
+---
 
 ## Business Objective
-The project answers a simple business question:
 
-**What drives revenue in the business, and where should the company focus to improve performance?**
+The project addresses a simple question:
 
-To answer that, I analyzed:
-- revenue trends,
-- customer concentration,
-- product and category performance,
-- customer purchasing behavior,
-- retention-related opportunities.
+**What drives revenue, and where should the business focus to improve performance?**
+
+To answer this, the analysis focuses on:
+
+* revenue trends
+* order value distribution
+* customer purchasing behavior
+* revenue concentration across customers
+
+---
 
 ## Dataset
-The analysis is based on the **theLook eCommerce** public dataset available in Google BigQuery.
 
-The dataset includes information about:
-- customers,
-- orders,
-- order items,
-- products,
-- inventory,
-- events,
-- distribution centers.
+Source: Google BigQuery public dataset
+`bigquery-public-data.thelook_ecommerce`
+
+The dataset includes:
+
+* orders and order items
+* customers
+* products
+* timestamps and order status
+
+---
 
 ## Tools Used
-- **SQL (BigQuery)** – data extraction, cleaning, KPI calculation, customer and revenue analysis
-- **Python / Jupyter Notebook** – additional analysis and data exploration
-- **Power BI / visualization tools** – dashboarding and presenting findings
-- **GitHub** – project documentation and portfolio presentation
 
-## Analysis Scope
-The project focuses on several business areas:
+* SQL (BigQuery) – data extraction, KPI calculation, aggregations
+* Python (pandas, matplotlib, seaborn) – analysis and visualization
+* Jupyter Notebooks – exploration and presentation
+* GitHub – project documentation
 
-### 1. Revenue Performance
-I analyzed total revenue performance and looked for patterns in customer spending and order behavior.
-
-### 2. Customer Analysis
-I explored how revenue is distributed across customers and whether the business depends heavily on a small group of high-value buyers.
-
-### 3. Product and Category Performance
-I reviewed which products or categories contribute the most to sales and which areas may need optimization.
-
-### 4. Retention Opportunity
-I looked at customer behavior from the perspective of repeat purchases and identified where retention improvements could increase revenue.
-
-## Key Findings
-
-### Pareto Analysis
-To measure customer revenue concentration, I conducted a Pareto analysis by ranking customers based on total revenue contribution and calculating cumulative revenue share.
-
-**Finding:** The top 20% of customers generate **52.76%** of total revenue.
-
-**Interpretation:** Revenue is moderately concentrated among higher-value customers, but the business does not follow a classic 80/20 pattern. A substantial share of revenue still comes from the broader customer base.
-
-**Business implication:** The company should not focus only on top spenders. In addition to retaining high-value customers, it should also improve repeat purchase frequency among regular customers.
-
-### Customer Revenue Structure
-The analysis suggests that growth opportunities are distributed across multiple customer segments rather than concentrated only in a narrow VIP group.
-
-This means broad retention and engagement strategies may be as important as premium customer targeting.
-
-### Strategic Opportunity
-Because a meaningful share of revenue comes from regular customers, even small improvements in repeat purchase behavior could create a noticeable uplift in overall revenue.
-
-This makes retention, re-engagement, and purchase frequency important levers for business growth.
-
-## Recommendations
-Based on the analysis, I would recommend the following actions:
-
-- Develop retention campaigns for regular customers, not only for top spenders.
-- Use segmentation to distinguish high-value, mid-value, and low-frequency customers.
-- Increase repeat purchases through personalized offers, email follow-ups, and post-purchase engagement.
-- Monitor customer concentration over time to detect whether revenue is becoming more or less dependent on top customers.
-- Combine revenue analysis with retention metrics to identify the most scalable growth opportunities.
+---
 
 ## Project Structure
-```bash
-thelookecommerce-data-analytics/
+
+```text
+project/
 │
-├── sql/                # SQL queries used in the analysis
-├── notebooks/          # Jupyter notebooks / Python analysis
-├── visuals/            # Charts, dashboard screenshots, Pareto chart
-├── README.md           # Project documentation
+├── data
+│   ├── orders_per_customer.csv
+│   ├── revenue_per_customer.csv
+│   └── revenue_per_order.csv
+│
+├── notebooks
+│   ├── AOV_analysis.ipynb
+│   ├── customer_behaviour_analysis.ipynb
+│   └── pareto_analysis.ipynb
+│
+├── sql
+│   ├── 01_data_quality_and_exploration.sql
+│   ├── 02_monthly_KPIs.sql
+│   ├── 03_aov_distribution.sql
+│   ├── 04_customer_behaviour.sql
+│   └── 05_pareto_analysis.sql
+│
+├── README.md
+└── .gitignore
 ```
+
+---
+
+## Analysis Scope
+
+### 1. Data Quality & Exploration
+
+* validated order statuses
+* ensured consistency between orders and order_items
+* checked for duplicates and missing relationships
+
+### 2. Revenue & KPI Analysis
+
+* analyzed monthly revenue and order volume
+* defined valid transactions (`status = 'Complete'`)
+* calculated key metrics such as AOV
+
+### 3. Order Value Distribution (AOV)
+
+* analyzed distribution of order values
+* compared mean vs median
+* identified right-skewed (long-tail) distribution
+
+### 4. Customer Behavior
+
+* calculated number of orders per customer
+* analyzed distribution of purchasing frequency
+* calculated repeat purchase rate
+
+### 5. Pareto Analysis (Revenue Concentration)
+
+* ranked customers by total revenue
+* calculated cumulative revenue contribution
+* measured revenue concentration across customer base
+
+---
+
+## Key Insights
+
+* Order value distribution is right-skewed (mean > median).
+* Most customers place only one order (~88%).
+* Repeat customers represent a relatively small share (~12%).
+* Revenue is moderately concentrated — top 20% of customers generate ~52.76% of revenue.
+
+---
+
+## Business Recommendations
+
+* Focus on improving customer retention, not only acquiring new users.
+* Increase purchase frequency among regular customers.
+* Do not rely solely on top customers — revenue is not heavily concentrated.
+* Small improvements in repeat behavior can have a meaningful impact on total revenue.
+
+---
+
 ## Example Business Questions
-This project was designed to answer questions such as:
 
-Which customers contribute the largest share of revenue?
+This analysis answers questions such as:
 
-Is revenue concentrated among a small customer segment?
+* How is revenue distributed across customers?
+* Do a small group of customers drive most of the revenue?
+* How frequently do customers make purchases?
+* Where are the biggest opportunities for revenue growth?
 
-What does the customer revenue distribution suggest about business risk?
+---
 
-Should the company prioritize VIP retention or broader customer retention?
+## Project Value
 
-Where are the biggest opportunities for revenue growth?
+This project demonstrates:
 
-## Why This Project Matters
-This project demonstrates how data analysis can be used to move from raw transactional data to business recommendations.
+* practical SQL analytics (aggregation, filtering, data validation)
+* ability to move from raw data to business insights
+* clear communication of findings and recommendations
 
-It combines SQL analysis, customer segmentation thinking, revenue interpretation, and stakeholder-oriented communication in one portfolio case study.
+---
+
+## Status
+
+Core analysis completed. Potential extensions include cohort retention and churn modeling.

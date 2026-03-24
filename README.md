@@ -1,152 +1,126 @@
-# theLook eCommerce Data Analytics
+# eCommerce Revenue Analysis
 
-## Overview
+## Executive Summary
 
-This project presents an end-to-end analysis of an e-commerce dataset using SQL (BigQuery) and Python.
+The analysis shows that revenue is primarily driven by a large base of new customers, while returning customers contribute a smaller but highly valuable share.
 
-The goal is to understand revenue patterns, customer purchasing behavior, and identify practical opportunities to improve business performance.
+Revenue distribution across products is moderately concentrated, with the top 20% of products generating approximately 57% of total revenue.
+
+The key growth opportunities lie in improving customer retention and increasing average order value (AOV), particularly in lower-performing product categories.
 
 ---
 
-## Business Objective
+## Business Problem
 
-The project addresses a simple question:
+The goal of this analysis was to understand:
 
-**What drives revenue, and where should the business focus to improve performance?**
-
-To answer this, the analysis focuses on:
-
-* revenue trends
-* order value distribution
-* customer purchasing behavior
-* revenue concentration across customers
+- What drives revenue in an eCommerce business?
+- Are customers or products the main growth driver?
+- Where are the biggest opportunities to increase revenue?
 
 ---
 
 ## Dataset
 
-Source: Google BigQuery public dataset
-`bigquery-public-data.thelook_ecommerce`
+The analysis is based on the public **theLook eCommerce dataset**, including:
 
-The dataset includes:
-
-* orders and order items
-* customers
-* products
-* timestamps and order status
+- Orders and order items
+- Product categories
+- Customer activity
 
 ---
 
-## Tools Used
+## Key Metrics
 
-* SQL (BigQuery) – data extraction, KPI calculation, aggregations
-* Python (pandas, matplotlib, seaborn) – analysis and visualization
-* Jupyter Notebooks – exploration and presentation
-* GitHub – project documentation
-
----
-
-## Project Structure
-
-```text
-project/
-│
-├── data
-│   ├── orders_per_customer.csv
-│   ├── revenue_per_customer.csv
-│   └── revenue_per_order.csv
-│
-├── notebooks
-│   ├── AOV_analysis.ipynb
-│   ├── customer_behaviour_analysis.ipynb
-│   └── pareto_analysis.ipynb
-│
-├── sql
-│   ├── 01_data_quality_and_exploration.sql
-│   ├── 02_monthly_KPIs.sql
-│   ├── 03_aov_distribution.sql
-│   ├── 04_customer_behaviour.sql
-│   └── 05_pareto_analysis.sql
-│
-├── README.md
-└── .gitignore
-```
-
----
-
-## Analysis Scope
-
-### 1. Data Quality & Exploration
-
-* validated order statuses
-* ensured consistency between orders and order_items
-* checked for duplicates and missing relationships
-
-### 2. Revenue & KPI Analysis
-
-* analyzed monthly revenue and order volume
-* defined valid transactions (`status = 'Complete'`)
-* calculated key metrics such as AOV
-
-### 3. Order Value Distribution (AOV)
-
-* analyzed distribution of order values
-* compared mean vs median
-* identified right-skewed (long-tail) distribution
-
-### 4. Customer Behavior
-
-* calculated number of orders per customer
-* analyzed distribution of purchasing frequency
-* calculated repeat purchase rate
-
-### 5. Pareto Analysis (Revenue Concentration)
-
-* ranked customers by total revenue
-* calculated cumulative revenue contribution
-* measured revenue concentration across customer base
+- Total Revenue: $2,692,875
+- Total Orders: 31,288
+- Total Users: 27,688
+- Average Order Value (AOV): $86.07
+- Revenue per User: $97.26
+- Orders per User: 1.13
 
 ---
 
 ## Key Insights
 
-* Order value distribution is right-skewed (mean > median).
-* Most customers place only one order (~88%).
-* Repeat customers represent a relatively small share (~12%).
-* Revenue is moderately concentrated — top 20% of customers generate ~52.76% of revenue.
+### 1. Customer Retention Drives Revenue
+
+- New customers: 88% of users, 78% of revenue
+- Returning customers: 12% of users, 22% of revenue
+
+Returning customers generate significantly higher revenue per user, indicating strong potential in retention strategies.
 
 ---
 
-## Business Recommendations
+### 2. Moderate Product Concentration
 
-* Focus on improving customer retention, not only acquiring new users.
-* Increase purchase frequency among regular customers.
-* Do not rely solely on top customers — revenue is not heavily concentrated.
-* Small improvements in repeat behavior can have a meaningful impact on total revenue.
+The top 20% of products generate approximately 57% of total revenue.
 
----
-
-## Example Business Questions
-
-This analysis answers questions such as:
-
-* How is revenue distributed across customers?
-* Do a small group of customers drive most of the revenue?
-* How frequently do customers make purchases?
-* Where are the biggest opportunities for revenue growth?
+This suggests a balanced distribution of revenue across products rather than strong dependence on a small subset.
 
 ---
 
-## Project Value
+### 3. Category Performance Differences
 
-This project demonstrates:
+Top categories (high revenue per order):
+- Outerwear & Coats: $151.87
+- Suits & Sport Coats: $130.02
+- Jeans: $103.27
 
-* practical SQL analytics (aggregation, filtering, data validation)
-* ability to move from raw data to business insights
-* clear communication of findings and recommendations
+Low-performing categories:
+- Socks & Hosiery: $17.29
+- Socks: $21.31
+- Leggings: $27.04
+
+This indicates significant variation in monetization potential.
 
 ---
 
-## Status
+## Business Impact
 
-Core analysis completed. Potential extensions include cohort retention and churn modeling.
+- Improving retention can increase revenue without increasing acquisition costs
+- Increasing AOV directly impacts total revenue
+- Product optimization can improve efficiency
+
+---
+
+## Recommendations
+
+### 1. Improve Customer Retention
+
+- Loyalty programs
+- Personalized campaigns
+- Re-engagement strategies 
+
+---
+
+### 2. Increase Average Order Value (AOV)
+
+- Product bundling 
+- Cross-selling and upselling 
+- Free shipping thresholds
+
+---
+
+### 3. Optimize Product Portfolio
+
+- Promote high-performing products 
+- Reduce low-performing items
+- Improve pricing strategy
+
+---
+
+## Suggested Experiments
+
+- A/B test bundling strategies
+- Test discounts for returning customers
+- Optimize checkout recommendations
+- Evaluate removing low-performing products
+
+---
+
+## Technical Approach
+
+- SQL was used to calculate all core business metrics 
+- Data was aggregated at appropriate levels (order, user, product) 
+- Analysis focused on business questions rather than raw exploration 
